@@ -12,6 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Еще один commit");
+        System.out.println("Еще один commit");
+        System.out.println("Еще один commit");
+        System.out.println("Еще один commit");
 
         ClientService clientService = new ClientService();
         Client client = new Client("Иван", "+6638942134", "passport", "ivan@gmail.com");
