@@ -9,8 +9,9 @@ import java.util.Scanner;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static RoomService roomService = new RoomService();
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        System.out.println("Еще один commit");
 
         ClientService clientService = new ClientService();
         Client client = new Client("Иван", "+6638942134", "passport", "ivan@gmail.com");
@@ -66,5 +67,6 @@ public class Main {
                     System.out.println("Такая функция еще не реализована");
             }
         }
+
     }
 }
