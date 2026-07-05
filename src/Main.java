@@ -1,3 +1,4 @@
+import exception.NotFoundException;
 import model.Client;
 import model.Room;
 import service.ClientService;
@@ -6,24 +7,40 @@ import service.RoomService;
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.Scanner;
 
+
+//#TODO Реализовать методы create и findById в RoomRepository, метод по генерации id
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static RoomService roomService = new RoomService();
 
     public static void main(String[] args) {
-        System.out.println("Еще один commit");
-        System.out.println("Еще один commit");
-        System.out.println("Еще один commit");
-        System.out.println("Еще один commit");
+        tests();
+    }
 
-        ClientService clientService = new ClientService();
-        Client client = new Client("Иван", "+6638942134", "passport", "ivan@gmail.com");
-        System.out.println("Перед созданием " + client);
-        client = clientService.create(client);
-        System.out.println("После создания " + client);
-        System.out.println("Конец теста");
+    private static void tests() {
+        try {
+            ClientService clientService = new ClientService();
+            Client client = new Client("Иван", "+6638942134", "passport", "ivan@gmail.com");
+            System.out.println("Перед созданием " + client);
+            client = clientService.create(client);
+            System.out.println("После создания " + client);
+            System.out.println("Конец теста");
 
-        while (true) {
+            System.out.println("Поиск по id: 1");
+            Client found = clientService.findById(1);
+
+            System.out.println(found);
+            System.out.println();
+
+            System.out.println("Поиск по id: 2");
+            found = clientService.findById(2);
+
+            System.out.println(found);
+        } catch (NotFoundException e) {
+            System.out.println("Not found: " + e.getMessage());
+        }
+
+       /* while (true) {
             printMainMenu();
             int choice = scanner.nextInt();
             switch (choice) {
@@ -33,7 +50,7 @@ public class Main {
                 default:
                     System.out.println("Такая функция еще не реализована");
             }
-        }
+        }*/
     }
 
     private static void printMainMenu() {

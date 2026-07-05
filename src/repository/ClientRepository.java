@@ -4,6 +4,7 @@ import model.Client;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class ClientRepository {
     private final Map<Integer, Client> clients;
@@ -20,7 +21,16 @@ public class ClientRepository {
         return client;
     }
 
-    private int getNextId() {
-        return 1;
+    public Optional<Client> findById(int id) {
+        return Optional.ofNullable(clients.get(id));
+    }
+
+    private Integer getNextId() {
+        int max = clients.keySet().stream()
+                .mapToInt(Integer::intValue)
+                .max()
+                .orElse(0);
+
+        return ++max;
     }
 }
