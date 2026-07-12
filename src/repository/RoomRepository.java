@@ -15,10 +15,23 @@ public class RoomRepository {
     }
 
     public Optional<Room> findById(int id) {
-        return rooms.stream()
+        return rooms
+                .stream()
                 .filter(room -> room.getId() == id)
                 .findFirst();
     }
+
+    private Integer getNextId() {
+        int max = rooms
+                .stream()
+                .mapToInt(Room::getId)
+                .max()
+                .orElse(0);
+
+        return ++max;
+    }
+
+
 
     public Optional<Room> findByRoomNumber(String roomNumber) {
         return rooms.stream()
