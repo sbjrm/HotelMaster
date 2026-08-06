@@ -1,10 +1,13 @@
 import exception.NotFoundException;
+import model.Booking;
 import model.Client;
 import model.Room;
+import service.BookingService;
 import service.ClientService;
 import service.RoomService;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 
@@ -12,14 +15,34 @@ import java.util.Scanner;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static RoomService roomService = new RoomService();
+    static ClientService clientService = new ClientService();
+    static BookingService bookingService = new BookingService();
 
     public static void main(String[] args) {
-        tests();
+        //tests();
+        testBooking();
+    }
+
+    public static void testBooking() {
+        try {
+            Client client = new Client("Иван", "+6638942134", "passport", "ivan@gmail.com");
+            client = clientService.create(client);
+            Room room = new Room("10", "Двухместная", 5000);
+            room = roomService.create(room);
+            Booking booking = new Booking(client,
+                    room,
+                    LocalDate.of(2026, 10, 22),
+                    LocalDate.of(2026, 10, 24),
+                    2);
+            booking = bookingService.create(booking);
+            System.out.println(booking);
+        } catch (NotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void tests() {
         try {
-            ClientService clientService = new ClientService();
             Client client = new Client("Иван", "+6638942134", "passport", "ivan@gmail.com");
             System.out.println("Перед созданием " + client);
             client = clientService.create(client);

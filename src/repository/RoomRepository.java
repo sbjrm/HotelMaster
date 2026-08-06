@@ -2,29 +2,38 @@ package repository;
 
 import model.Room;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class RoomRepository {
-    private List<Room> rooms = new ArrayList<>();
+    private final Map<Integer, Room> rooms;
+
+    private RoomRepository() {
+        this.rooms = new HashMap<>();
+    }
+
+    private static class Holder {
+        private static final RoomRepository INSTANCE = new RoomRepository();
+    }
+
+    public static RoomRepository getInstance() {
+        return Holder.INSTANCE;
+    }
 
     public Room save(Room room) {
-        rooms.add(room);
+        room.setId(getNextId());
+        rooms.put(getNextId(), room);
         return room;
     }
 
     public Optional<Room> findById(int id) {
-        return rooms
-                .stream()
-                .filter(room -> room.getId() == id)
-                .findFirst();
+        return Optional.ofNullable(rooms.get(id));
     }
 
     private Integer getNextId() {
         int max = rooms
+                .keySet()
                 .stream()
-                .mapToInt(Room::getId)
+                .mapToInt(Integer::intValue)
                 .max()
                 .orElse(0);
 
@@ -32,15 +41,14 @@ public class RoomRepository {
     }
 
 
-
     public Optional<Room> findByRoomNumber(String roomNumber) {
-        return rooms.stream()
-                .filter(room -> room.getRoomNumber().equals(roomNumber))
-                .findFirst();
+        return Optional.ofNullable(rooms.get(roomNumber));
     }
 
     public List<Room> findAll() {
-        return new ArrayList<>(rooms);
+        return rooms.values()
+                .stream()
+                .toList();
     }
 
     public boolean update(Room updateRoom) {
@@ -56,12 +64,11 @@ public class RoomRepository {
     }
 
     public boolean delete(int id) {
-        return rooms.removeIf(room -> room.getId() == id);
+        return rooms.remove(id) != null;
     }
 
     public void clear() {
         rooms.clear();
     }
-
 
 }

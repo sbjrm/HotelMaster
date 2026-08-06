@@ -3,7 +3,6 @@ package model;
 import java.util.Objects;
 
 public class Room {
-    private static int nextId = 1;
     private int id;
     private String roomNumber;
     private String type;
@@ -11,7 +10,6 @@ public class Room {
     private double pricePerNight;
 
     public Room(String roomNumber, String type, double priceNight) {
-        this.id = nextId++;
         this.roomNumber = roomNumber;
         this.type = type;
         this.pricePerNight = priceNight;
@@ -21,12 +19,8 @@ public class Room {
         return id;
     }
 
-    public static int getNextId() {
-        return nextId;
-    }
-
-    public static void setNextId(int nextId) {
-        Room.nextId = nextId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getRoomNumber() {

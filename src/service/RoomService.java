@@ -7,15 +7,10 @@ public class RoomService {
     private RoomRepository roomRepository;
 
     public RoomService() {
-        this.roomRepository = roomRepository;
+        this.roomRepository = RoomRepository.getInstance();
     }
 
-    public Room addRoom(String roomNumber, String type, double pricePerNight) {
-        if (roomRepository.findByRoomNumber(roomNumber).isPresent()) {
-            System.out.println("Ошибка: Комната с таким номером уже существует!");
-            return null;
-        }
-        Room room = new Room(roomNumber, type, pricePerNight);
+    public Room create (Room room) {
         return roomRepository.save(room);
     }
 
@@ -23,3 +18,4 @@ public class RoomService {
         System.out.println("Показываем все номера");
     }
 }
+

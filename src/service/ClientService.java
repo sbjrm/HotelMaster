@@ -4,17 +4,17 @@ import exception.NotFoundException;
 import model.Client;
 import repository.ClientRepository;
 
+import java.util.Map;
 import java.util.Optional;
 
 public class ClientService {
-    private final ClientRepository clientRepository;
+    private ClientRepository clientRepository;
 
     public ClientService() {
-        this.clientRepository = new ClientRepository();
+        this.clientRepository = ClientRepository.getInstance();
     }
 
     public Client create(Client client) {
-        System.out.println("Метод create в сервисе");
         return clientRepository.save(client);
     }
 
@@ -29,5 +29,26 @@ public class ClientService {
         } else {
             throw new NotFoundException("Клиент с id = " + id + " не найден");
         }*/
+    }
+
+    public Client findByPhone(String phone) throws NotFoundException {
+        Optional<Client> found = clientRepository.findByPhone(phone);
+        return  clientRepository
+                .findByPhone(phone)
+                .orElseThrow(() -> new NotFoundException("Клиент с телефоном = " + phone + " не найден"));
+    }
+
+    public Client findByPassport(String passport) throws NotFoundException {
+        Optional<Client> found = clientRepository.findByPassport(passport);
+        return clientRepository
+                .findByPassport(passport)
+                .orElseThrow(() -> new NotFoundException("Клиент с пасспортом = " + passport + " не найден"));
+    }
+
+    public Client findByEmail(String email) throws NotFoundException {
+        Optional<Client> found = clientRepository.findByEmail(email);
+        return clientRepository
+                .findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("Клиент с эмейлом = " + email + " не найден"));
     }
 }
