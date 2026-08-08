@@ -45,6 +45,16 @@ public class ClientRepository {
         return Optional.ofNullable(clients.get(email));
     }
 
+    public Client updateById (int id, Client client) {
+        client.setId(id);
+        clients.put(id, client);
+        return client;
+    }
+
+    public void deleteById (int id) {
+        clients.remove(id);
+    }
+
     private Integer getNextId() {
         int max = clients.keySet().stream()
                 .mapToInt(Integer::intValue)

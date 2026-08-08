@@ -51,4 +51,18 @@ public class ClientService {
                 .findByEmail(email)
                 .orElseThrow(() -> new NotFoundException("Клиент с эмейлом = " + email + " не найден"));
     }
+
+    public Client updateById(int id, Client client) throws NotFoundException {
+        findById(id);
+        return clientRepository
+                .updateById(id, client);
+    }
+
+    public boolean deleteById (int id) throws NotFoundException{
+        findById(id);
+        clientRepository.deleteById(id);
+        return clientRepository
+                .findById(id)
+                .isEmpty();
+    }
 }
