@@ -2,6 +2,7 @@ package repository;
 
 import model.Client;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -33,8 +34,12 @@ public class ClientRepository {
         return Optional.ofNullable(clients.get(id));
     }
 
+    //Достать все значения из хэшмапы clients
+    //найти phone через filter
+
+
     public Optional<Client> findByPhone(String phone) {
-        return Optional.ofNullable(clients.get(phone));
+        Collection<Client> collection = clients.values();
     }
 
     public Optional<Client> findByPassport(String passport) {
