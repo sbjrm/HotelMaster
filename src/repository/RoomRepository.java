@@ -46,9 +46,12 @@ public class RoomRepository {
     }
 
     public List<Room> findAll() {
-        return rooms.values()
-                .stream()
-                .toList();
+        return new ArrayList<>(rooms.values());
+    }
+
+    //Возвращает список всех комнат, отсортированных по возрастанию цены
+    public List<Room> findAllSortByPriceAsc() {
+        return null;
     }
 
     public boolean update(Room updateRoom) {

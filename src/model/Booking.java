@@ -61,9 +61,9 @@ public class Booking {
         return totalPrice;
     }
 
-    public String getStatus() {
+    /*public String getStatus() {
         return status;
-    }
+    }*/
 
     public static void setNextId(int nextId) {
         Booking.nextId = nextId;
@@ -97,9 +97,9 @@ public class Booking {
         this.totalPrice = totalPrice;
     }
 
-    public void setStatus(String status) {
+   /* public void setStatus(String status) {
         this.status = status;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -111,7 +111,7 @@ public class Booking {
                 ", checkOutDate=" + checkOutDate +
                 ", guestsCount=" + guestsCount +
                 ", totalPrice=" + totalPrice +
-                ", status='" + status + '\'' +
+              //  ", status='" + status + '\'' +
                 '}';
     }
 }

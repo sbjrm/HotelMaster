@@ -37,9 +37,12 @@ public class ClientRepository {
     //Достать все значения из хэшмапы clients
     //найти phone через filter
 
+    //Stream - промежуточные и терминальные
 
     public Optional<Client> findByPhone(String phone) {
-        Collection<Client> collection = clients.values();
+        return clients.values().stream()
+                .filter(client -> phone.equals(client.getPhone()))
+                .findFirst();
     }
 
     public Optional<Client> findByPassport(String passport) {

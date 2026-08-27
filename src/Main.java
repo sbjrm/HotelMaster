@@ -20,7 +20,28 @@ public class Main {
 
     public static void main(String[] args) {
         //tests();
-        testBooking();
+        //testBooking();
+        testPhone();
+    }
+
+    public static void testPhone() {
+        Client client1 = new Client("Первый", "+6638942134", "passport", "ivan@gmail.com");
+        Client client2 = new Client("Второй", "+6638942164", "passport", "ivan@gmail.com");
+
+        clientService.create(client1);
+        clientService.create(client2);
+
+        try {
+            System.out.println("Первый:");
+            System.out.println(clientService.findByPhone("+6638942134"));
+            System.out.println("Второй:");
+            System.out.println(clientService.findByPhone("+6638942164"));
+            System.out.println("Такого нет ");
+        } catch (NotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println();
     }
 
     public static void testBooking() {
@@ -103,7 +124,7 @@ public class Main {
                     roomService.printAllRooms();
                     break;
                 case 2:
-                    roomService.addRoom("11", "11", 2222);
+                   // roomService.addRoom("11", "11", 2222);
                 case 0:
                     return;
                 default:

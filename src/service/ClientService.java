@@ -32,8 +32,7 @@ public class ClientService {
     }
 
     public Client findByPhone(String phone) throws NotFoundException {
-        Optional<Client> found = clientRepository.findByPhone(phone);
-        return  clientRepository
+        return clientRepository
                 .findByPhone(phone)
                 .orElseThrow(() -> new NotFoundException("Клиент с телефоном = " + phone + " не найден"));
     }
