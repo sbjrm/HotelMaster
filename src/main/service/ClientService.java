@@ -1,14 +1,13 @@
-package service;
+package main.service;
 
-import exception.NotFoundException;
-import model.Client;
-import repository.ClientRepository;
+import main.exception.NotFoundException;
+import main.model.Client;
+import main.repository.ClientRepository;
 
-import java.util.Map;
 import java.util.Optional;
 
 public class ClientService {
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     public ClientService() {
         this.clientRepository = ClientRepository.getInstance();

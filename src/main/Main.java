@@ -1,12 +1,13 @@
-import exception.NotFoundException;
-import model.Booking;
-import model.Client;
-import model.Room;
-import service.BookingService;
-import service.ClientService;
-import service.RoomService;
+package main;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
+import main.exception.NotFoundException;
+import main.model.Booking;
+import main.model.Client;
+import main.model.Room;
+import main.service.BookingService;
+import main.service.ClientService;
+import main.service.RoomService;
+
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -19,8 +20,8 @@ public class Main {
     static BookingService bookingService = new BookingService();
 
     public static void main(String[] args) {
-        //tests();
-        //testBooking();
+        tests();
+        testBooking();
         testPhone();
     }
 

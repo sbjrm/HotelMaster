@@ -1,10 +1,10 @@
-package service;
+package main.service;
 
-import exception.NotFoundException;
-import model.Booking;
-import repository.BookingRepository;
-import repository.ClientRepository;
-import repository.RoomRepository;
+import main.exception.NotFoundException;
+import main.model.Booking;
+import main.repository.BookingRepository;
+import main.repository.ClientRepository;
+import main.repository.RoomRepository;
 
 public class BookingService {
     private final ClientRepository clientRepository;

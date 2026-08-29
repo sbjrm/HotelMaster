@@ -1,6 +1,6 @@
-package repository;
+package main.repository;
 
-import model.Room;
+import main.model.Room;
 
 import java.util.*;
 

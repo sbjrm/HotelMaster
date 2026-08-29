@@ -1,7 +1,7 @@
-package service;
+package main.service;
 
-import model.Room;
-import repository.RoomRepository;
+import main.model.Room;
+import main.repository.RoomRepository;
 
 public class RoomService {
     private RoomRepository roomRepository;

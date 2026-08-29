@@ -1,4 +1,6 @@
-package model;
+package main.model;
+
+import java.util.Objects;
 
 public class Client {
 
@@ -60,4 +62,15 @@ public class Client {
         this.email = email;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return id == client.id && Objects.equals(fullName, client.fullName) && Objects.equals(phone, client.phone) && Objects.equals(passport, client.passport) && Objects.equals(email, client.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, fullName, phone, passport, email);
+    }
 }

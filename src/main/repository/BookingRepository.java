@@ -1,6 +1,6 @@
-package repository;
+package main.repository;
 
-import model.Booking;
+import main.model.Booking;
 
 import java.util.HashMap;
 import java.util.Map;

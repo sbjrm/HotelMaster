@@ -1,8 +1,7 @@
-package repository;
+package main.repository;
 
-import model.Client;
+import main.model.Client;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
