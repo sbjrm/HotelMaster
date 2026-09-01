@@ -2,9 +2,7 @@ package main.repository;
 
 import main.model.Client;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class ClientRepository {
     private final Map<Integer, Client> clients;
@@ -33,10 +31,9 @@ public class ClientRepository {
         return Optional.ofNullable(clients.get(id));
     }
 
-    //Достать все значения из хэшмапы clients
-    //найти phone через filter
-
-    //Stream - промежуточные и терминальные
+    public List<Client> findAll() {
+        return new ArrayList<>(clients.values());
+    }
 
     public Optional<Client> findByPhone(String phone) {
         return clients.values().stream()
@@ -45,11 +42,15 @@ public class ClientRepository {
     }
 
     public Optional<Client> findByPassport(String passport) {
-        return Optional.ofNullable(clients.get(passport));
+        return clients.values().stream()
+                .filter(client -> passport.equals(client.getPassport()))
+                .findFirst();
     }
 
     public Optional<Client> findByEmail(String email) {
-        return Optional.ofNullable(clients.get(email));
+        return clients.values().stream()
+                .filter(client -> email.equals(client.getEmail()))
+                .findFirst();
     }
 
     public Client updateById (int id, Client client) {

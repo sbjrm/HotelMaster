@@ -42,7 +42,10 @@ public class RoomRepository {
 
 
     public Optional<Room> findByRoomNumber(String roomNumber) {
-        return Optional.ofNullable(rooms.get(roomNumber));
+        return rooms.values()
+                .stream()
+                .filter(room -> roomNumber.equals(room.getRoomNumber()))
+                .findFirst();
     }
 
     public List<Room> findAll() {
@@ -51,7 +54,10 @@ public class RoomRepository {
 
     //Возвращает список всех комнат, отсортированных по возрастанию цены
     public List<Room> findAllSortByPriceAsc() {
-        return null;
+        return rooms.values()
+                .stream()
+                .sorted(Comparator.comparing(Room::getPricePerNight))
+                .toList();
     }
 
     public boolean update(Room updateRoom) {
